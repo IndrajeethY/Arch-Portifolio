@@ -1,0 +1,25 @@
+STARTUP SOUND SETUP
+===================
+
+To add the Linux startup sound to your portfolio:
+
+1. Find or download a Linux startup sound (e.g., Ubuntu startup sound, Arch boot sound, etc.)
+   - Recommended: Short sound (1-3 seconds)
+   - Format: MP3, WAV, or OGG
+
+2. Rename the file to: startup-sound.mp3
+
+3. Place it in this public/ directory
+
+4. The sound will automatically play when you log in to the desktop
+
+Note: Due to browser autoplay policies, the sound may not play on the first visit
+until the user interacts with the page. This is normal browser behavior.
+
+Suggested sources for Linux startup sounds:
+- Ubuntu startup sound (classic)
+- Arch Linux boot beep
+- Generic Linux startup chime
+- Custom sound of your choice
+
+Volume is set to 30% to avoid being too loud.

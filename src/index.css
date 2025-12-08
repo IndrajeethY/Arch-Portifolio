@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Arch Linux Theme */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 90%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 90%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 90%;
+
+    /* Arch Blue */
+    --primary: 199 86% 46%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 172 66% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 199 86% 46%;
+
+    --radius: 0.25rem;
+
+    /* Custom Arch Theme Colors */
+    --terminal-green: 120 100% 50%;
+    --terminal-cyan: 180 100% 50%;
+    --terminal-yellow: 60 100% 50%;
+    --terminal-red: 0 100% 60%;
+    --terminal-magenta: 300 100% 60%;
+
+    --window-header: 199 86% 40%;
+    --window-border: 199 86% 30%;
+    --panel-bg: 0 0% 8%;
+
+    /* Sidebar - keeping for compatibility */
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 199 86% 46%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 199 86% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+/* Terminal cursor blink */
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Boot text typing effect */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 0.5s steps(40) forwards;
+}
+
+/* Scanline effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    hsl(var(--primary) / 0.1),
+    transparent
+  );
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* CRT glow effect */
+.crt-glow {
+  text-shadow:
+    0 0 5px hsl(var(--primary) / 0.5),
+    0 0 10px hsl(var(--primary) / 0.3),
+    0 0 20px hsl(var(--primary) / 0.2);
+}
+
+/* Window animations */
+@keyframes windowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes windowClose {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.window-open {
+  animation: windowOpen 0.2s ease-out forwards;
+}
+
+.window-close {
+  animation: windowClose 0.15s ease-in forwards;
+}
+
+/* Boot fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Loading bar animation */
+@keyframes loadingBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.loading-bar {
+  animation: loadingBar 3s ease-in-out forwards;
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch:hover {
+  animation: glitch 0.3s ease infinite;
+}
+
+/* Desktop icon hover */
+.desktop-icon {
+  transition: all 0.2s ease;
+}
+
+.desktop-icon:hover {
+  background: hsl(var(--primary) / 0.2);
+}
+
+.desktop-icon:focus {
+  background: hsl(var(--primary) / 0.3);
+  outline: 1px dashed hsl(var(--primary));
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Selection color */
+::selection {
+  background: hsl(var(--primary) / 0.4);
+  color: hsl(var(--foreground));
+}
+
+/* Video Wallpaper Responsive Styles */
+.video-wallpaper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  object-fit: cover;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .video-wallpaper {
+    /* Center on character for mobile */
+    object-position: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-wallpaper {
+    /* For very small screens, focus on the center */
+    object-position: 50% 30%;
+  }
+}
+
+/* Landscape mobile handling */
+@media (max-height: 500px) and (orientation: landscape) {
+  .video-wallpaper {
+    object-position: center top;
+  }
+}
+
+/* Animated gradient background fallback */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient-bg {
+  background: linear-gradient(
+    -45deg,
+    hsl(220, 60%, 8%),
+    hsl(240, 50%, 12%),
+    hsl(260, 40%, 10%),
+    hsl(280, 50%, 8%),
+    hsl(200, 60%, 10%)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Purple/blue glow effect for Solo Leveling theme */
+.solo-leveling-glow {
+  position: relative;
+}
+
+.solo-leveling-glow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    hsl(270, 80%, 30%, 0.3) 0%,
+    hsl(250, 70%, 20%, 0.2) 30%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  filter: blur(80px);
+  pointer-events: none;
+}
